@@ -5,7 +5,7 @@ import React from "react";
 
 const NavBar = () => {
   return (
-    <div className="navbar bg-base-100 shadow-sm px-4 md:px-8 mb-5 ">
+    <div className="navbar bg-white dark:bg-slate-900 border-b border-slate-200/80 dark:border-slate-800 px-4 md:px-8 mb-10">
       <div className="flex-1">
         <div className="dropdown lg:hidden">
           <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
