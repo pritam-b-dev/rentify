@@ -1,3 +1,4 @@
+"use client";
 import {
   FieldError,
   Input,
@@ -9,12 +10,29 @@ import {
   TextArea,
 } from "@heroui/react";
 import React from "react";
+import { toast } from "react-toastify";
 
 const AddCarPage = () => {
   const onSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const myCar = Object.fromEntries(formData.entries());
+    console.log(myCar);
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/car`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(myCar),
+    });
+    if (res.ok) {
+      const dbResponseFromBackend = await res.json();
+      console.log("Database Response:", dbResponseFromBackend);
+      e.target.reset();
+      toast.success("Successfully inserted data!");
+    } else {
+      toast.error(`Error: Server returned status ${res.status}`);
+    }
   };
 
   return (
