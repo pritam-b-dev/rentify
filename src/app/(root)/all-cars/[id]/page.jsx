@@ -6,6 +6,7 @@ import { FaMapMarkerAlt } from "react-icons/fa";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import BookingCard from "../../../../components/BookingCard";
 import EditCarDetails from "../../../../components/EditCarDetails";
+import DeleteCar from "../../../../components/DeleteCar";
 
 const CarDetailsPage = async ({ params }) => {
   const { id } = await params;
@@ -37,9 +38,7 @@ const CarDetailsPage = async ({ params }) => {
           </Link>
           <div className="flex gap-2">
             <EditCarDetails carDetails={carDetails} />
-            <Button size="sm" className="text-sm bg-red-500 text-white">
-              Delete
-            </Button>
+            <DeleteCar carDetails={carDetails} />
           </div>
         </div>
 
