@@ -5,7 +5,7 @@ import React from "react";
 
 const NavBar = () => {
   return (
-    <div className="navbar bg-white dark:bg-slate-900 border-b border-slate-200/80 dark:border-slate-800 px-4 md:px-8 mb-10">
+    <div className="navbar bg-white dark:bg-slate-900 border-b border-slate-200/80 dark:border-slate-800 px-4 md:px-8 ">
       <div className="flex-1">
         <div className="dropdown lg:hidden">
           <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
@@ -61,7 +61,7 @@ const NavBar = () => {
             role="button"
             className="btn btn-ghost btn-circle avatar"
           >
-            <div className="w-10 rounded-full">
+            <div className="w-10 rounded-full z-2">
               <Image
                 alt="Tailwind CSS Navbar component"
                 src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
@@ -72,7 +72,7 @@ const NavBar = () => {
           </div>
           <ul
             tabIndex="-1"
-            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-12 w-52 p-2 shadow"
           >
             <li>
               <Link href={"/add-car"}>Add Car</Link>

@@ -1,24 +1,26 @@
-availabilityStatus
-: 
-"Available"
-carName
-: 
-"ww"
-carType
-: 
-"Truck"
-dailyPrice
-: 
-"50"
-description
-: 
-"any"
-imageUrl
-: 
-"https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800&auto=format&fit=crop"
-pickupLocation
-: 
-"dhk"
-seatCapacity
-: 
-"2"
+
+**The sent form data:
+
+availabilityStatus: "Available"
+carName: "ww"
+carType: "Truck"
+dailyPrice: "50"
+description: "any"
+imageUrl: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800&auto=formatfit=crop"
+pickupLocation: "dhk"
+seatCapacity: "2"
+------------------------------------------------------------------------------------------
+
+
+------------------------------------------------------------------------------------------
+**A single car data to rent:
+
+"_id": "6a0d9dc2d00914a707690a67",
+"carName": "Toyota",
+"dailyPrice": "50",
+"carType": "Sedan",
+"seatCapacity": "9",
+"availabilityStatus": "Available",
+"pickupLocation": "Dhaka",
+"imageUrl": "https://images.pexels.com/photos/32422139/pexels-photo-32422139.jpeg?cs=srgb&dl=pexels-haryad-32422139.jpg&fm=jpg",
+"description": "excelent condition"
