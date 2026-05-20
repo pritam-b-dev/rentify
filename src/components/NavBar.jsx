@@ -1,3 +1,4 @@
+"use client";
 import { Button } from "@heroui/react";
 import Image from "next/image";
 import Link from "next/link";
@@ -52,7 +53,7 @@ const NavBar = () => {
             <Link href={"/all-cars"}>Explore Cars</Link>
           </li>
           <li>
-            <Link href={"/login"}>Login/Register</Link>
+            <Link href={"/signin"}>Login/Register</Link>
           </li>
         </ul>
         <div className="dropdown dropdown-end">
