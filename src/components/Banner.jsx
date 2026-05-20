@@ -25,7 +25,7 @@ const Banner = () => {
   };
 
   return (
-    <div className="relative w-full min-h-[80vh] flex items-center bg-linear-to-r from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-950 overflow-hidden px-4 md:px-12 lg:px-24">
+    <div className="relative w-full min-h-[80vh] flex items-center bg-linear-to-r from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-950 overflow-hidden px-4 md:px-12 lg:px-24 mb-5">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center w-full max-w-7xl mx-auto z-10 py-12">
         <motion.div
           className="flex flex-col space-y-6 text-center lg:text-left justify-center"

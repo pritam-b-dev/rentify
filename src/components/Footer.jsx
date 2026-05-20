@@ -12,7 +12,7 @@ import {
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-100 text-gray-700 py-10 border-t border-gray-200">
+    <footer className="bg-gray-100 text-gray-700 py-10 border-t border-gray-200 mt-5">
       <div className="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
         <div>
           <h2 className="text-2xl font-bold text-gray-900 mb-3">Rentify</h2>
