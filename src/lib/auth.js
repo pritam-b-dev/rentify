@@ -6,10 +6,16 @@ const client = new MongoClient(process.env.MONGODB_URI);
 const db = client.db("rentify");
 
 export const auth = betterAuth({
-  database: mongodbAdapter(db, {
-    client,
-  }),
+  baseURL: "http://localhost:3000",
+  secret: process.env.BETTER_AUTH_SECRET,
+  database: mongodbAdapter(db),
   emailAndPassword: {
     enabled: true,
+  },
+  trustedOrigins: ["http://localhost:3000"],
+  session: {
+    cookieCache: {
+      enabled: false,
+    },
   },
 });

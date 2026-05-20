@@ -35,16 +35,13 @@ const EditCarDetails = ({ carDetails }) => {
     const formData = new FormData(e.currentTarget);
     const myCar = Object.fromEntries(formData.entries());
     console.log(myCar);
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_SERVER_URL}/car/${_id}`,
-      {
-        method: "PATCH",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify(myCar),
+    const res = await fetch(`http://localhost:5000/car/${_id}`, {
+      method: "PATCH",
+      headers: {
+        "content-type": "application/json",
       },
-    );
+      body: JSON.stringify(myCar),
+    });
     if (res.ok) {
       const dbResponseFromBackend = await res.json();
       console.log("Database Response:", dbResponseFromBackend);

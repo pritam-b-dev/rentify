@@ -2,7 +2,7 @@ import React from "react";
 import CarCard from "../../../components/CarCard";
 
 const AllCarsPage = async () => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/car`);
+  const res = await fetch(`http://localhost:5000/car`);
   const allCars = await res.json();
   console.log(allCars);
   return (

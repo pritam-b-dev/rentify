@@ -10,7 +10,7 @@ import DeleteCar from "../../../../components/DeleteCar";
 
 const CarDetailsPage = async ({ params }) => {
   const { id } = await params;
-  const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/car/${id}`);
+  const res = await fetch(`http://localhost:5000/car/${id}`);
   const carDetails = await res.json();
   console.log(carDetails);
   const {

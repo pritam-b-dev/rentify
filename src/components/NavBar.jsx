@@ -3,8 +3,16 @@ import { Button } from "@heroui/react";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import { authClient } from "../lib/auth-client";
 
 const NavBar = () => {
+  const { data: session } = authClient.useSession();
+  const user = session?.user;
+
+  const handleSignOut = async () => {
+    await authClient.signOut();
+  };
+
   return (
     <div className="navbar bg-white dark:bg-slate-900 border-b border-slate-200/80 dark:border-slate-800 px-4 md:px-8 ">
       <div className="flex-1">
@@ -27,7 +35,7 @@ const NavBar = () => {
           </div>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-10 mt-3 w-52 p-2 shadow"
+            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-12 mt-3 w-52 p-2 shadow"
           >
             <li>
               <Link href={"/"}>Home</Link>
@@ -52,48 +60,53 @@ const NavBar = () => {
           <li>
             <Link href={"/all-cars"}>Explore Cars</Link>
           </li>
-          <li>
-            <Link href={"/signin"}>Login/Register</Link>
-          </li>
+          {!user && (
+            <li>
+              <Link href={"/signin"}>Login/Register</Link>
+            </li>
+          )}
         </ul>
-        <div className="dropdown dropdown-end">
-          <div
-            tabIndex={0}
-            role="button"
-            className="btn btn-ghost btn-circle avatar"
-          >
-            <div className="w-10 rounded-full z-2">
-              <Image
-                alt="Tailwind CSS Navbar component"
-                src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
-                width={100}
-                height={100}
-              />
+        {user && (
+          <div className="dropdown dropdown-end">
+            <div
+              tabIndex={0}
+              role="button"
+              className="btn btn-ghost btn-circle avatar"
+            >
+              <div className="w-10 rounded-full z-2">
+                <Image
+                  alt="Tailwind CSS Navbar component"
+                  src={user?.image}
+                  width={100}
+                  height={100}
+                />
+              </div>
             </div>
+            <ul
+              tabIndex="-1"
+              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-12 w-52 p-2 shadow"
+            >
+              <li>
+                <Link href={"/add-car"}>Add Car</Link>
+              </li>
+              <li>
+                <Link href={"/my-booking"}>My Bookings</Link>
+              </li>
+              <li>
+                <Link href={"/my-cars"}>My Added Cars</Link>
+              </li>
+              <li className="w-full">
+                <Button
+                  onClick={handleSignOut}
+                  variant="light"
+                  className="w-full justify-start text-red-600 hover:bg-red-50 text-sm py-2 px-3"
+                >
+                  Logout
+                </Button>
+              </li>
+            </ul>
           </div>
-          <ul
-            tabIndex="-1"
-            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-12 w-52 p-2 shadow"
-          >
-            <li>
-              <Link href={"/add-car"}>Add Car</Link>
-            </li>
-            <li>
-              <Link href={"/my-booking"}>My Bookings</Link>
-            </li>
-            <li>
-              <Link href={"/my-cars"}>My Added Cars</Link>
-            </li>
-            <li className="w-full">
-              <Button
-                variant="light"
-                className="w-full justify-start text-red-600 hover:bg-red-50 text-sm py-2 px-3"
-              >
-                Logout
-              </Button>
-            </li>
-          </ul>
-        </div>
+        )}
       </div>
     </div>
   );

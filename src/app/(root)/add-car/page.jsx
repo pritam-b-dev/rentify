@@ -18,7 +18,7 @@ const AddCarPage = () => {
     const formData = new FormData(e.currentTarget);
     const myCar = Object.fromEntries(formData.entries());
     console.log(myCar);
-    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/car`, {
+    const res = await fetch(`http://localhost:5000/car`, {
       method: "POST",
       headers: {
         "content-type": "application/json",

@@ -3,7 +3,7 @@ import CarCard from "./CarCard";
 import AnimatedFeaturedCarsCard from "./AnimatedFeaturedCarsCard";
 
 const AvailableCars = async () => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/car`);
+  const res = await fetch(`http://localhost:5000/car`);
   const allCars = await res.json();
   console.log(allCars);
   return (
