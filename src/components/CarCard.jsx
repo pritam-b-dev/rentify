@@ -35,7 +35,8 @@ const CarCard = ({ car }) => {
           variant="ghost"
           className="mt-3 w-full bg-neutral-500 hover:bg-neutral-700 text-white font-medium py-3 rounded-xl flex items-center justify-center gap-2 border-none transition-colors"
         >
-          Rent Now <FaExternalLinkAlt />
+          Show Details
+          <FaExternalLinkAlt />
         </Button>
       </Link>
     </div>
