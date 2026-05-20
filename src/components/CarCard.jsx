@@ -30,7 +30,7 @@ const CarCard = ({ car }) => {
         <h1>{availabilityStatus}</h1>
         <span className="text-amber-800">${dailyPrice}/day</span>
       </div>
-      <Link href={`/`}>
+      <Link href={`/all-cars/${_id}`}>
         <Button
           variant="ghost"
           className="mt-3 w-full bg-neutral-500 hover:bg-neutral-700 text-white font-medium py-3 rounded-xl flex items-center justify-center gap-2 border-none transition-colors"
