@@ -69,7 +69,7 @@ const BookingCard = ({ carDetails }) => {
       <Button
         onClick={() => setIsOpen(true)}
         disabled={!isAvailable}
-        className="bg-gray-900 text-white px-8 py-3 rounded-xl font-medium"
+        className="bg-neutral-500 hover:bg-neutral-700 text-white px-8 py-3 rounded-xl font-medium"
       >
         {isAvailable ? "Book Now" : "Not Available"}
       </Button>
@@ -160,8 +160,8 @@ const BookingCard = ({ carDetails }) => {
                       onClick={() => setDriverNeeded(option)}
                       className={`flex-1 py-2 rounded-xl text-sm font-medium border transition-colors ${
                         driverNeeded === option
-                          ? "bg-gray-900 text-white border-gray-900"
-                          : "bg-white text-gray-600 border-gray-200 hover:border-gray-400"
+                          ? "bg-neutral-700 text-white border-gray-900"
+                          : "bg-neutral-200 text-black border-gray-200 hover:border-gray-400"
                       }`}
                     >
                       {option === "yes" ? "Yes" : "No"}
@@ -187,7 +187,7 @@ const BookingCard = ({ carDetails }) => {
             <Button
               onClick={handleConfirm}
               disabled={!startDate || !endDate || totalDays <= 0}
-              className="w-full bg-gray-900 text-white py-3 rounded-xl font-medium"
+              className="w-full bg-neutral-500 hover:bg-neutral-700 text-white py-3 rounded-xl font-medium"
             >
               Confirm Booking — ${totalPrice}
             </Button>

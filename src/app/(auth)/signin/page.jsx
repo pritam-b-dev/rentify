@@ -15,6 +15,7 @@ import {
 
 import Link from "next/link";
 import { authClient } from "../../../lib/auth-client";
+import { FcGoogle } from "react-icons/fc";
 const SignInPage = () => {
   const router = useRouter();
   const onSubmit = async (e) => {
@@ -46,8 +47,8 @@ const SignInPage = () => {
 
   return (
     <div className="max-w-3xl flex justify-center items-center flex-col mx-auto my-5">
-      <div className="text-center">
-        <h1 className="text-2xl">Signin To Your Account</h1>
+      <div className="text-center mb-5">
+        <h1 className="text-2xl font-bold ">Signin To Your Account</h1>
       </div>
       <Card className="border">
         <Form onSubmit={onSubmit} className="flex w-96 flex-col gap-4">
@@ -66,46 +67,41 @@ const SignInPage = () => {
             <Input placeholder="john@example.com" />
             <FieldError />
           </TextField>
-          <TextField
-            isRequired
-            minLength={8}
-            name="password"
-            type="password"
-            validate={(value) => {
-              if (value.length < 8) {
-                return "Password must be at least 8 characters";
-              }
-              if (!/[A-Z]/.test(value)) {
-                return "Password must contain at least one uppercase letter";
-              }
-              if (!/[0-9]/.test(value)) {
-                return "Password must contain at least one number";
-              }
-              return null;
-            }}
-          >
+          <TextField isRequired name="password" type="password">
             <Label>Password</Label>
             <Input placeholder="Enter your password" />
-            <Description>
-              Must be at least 8 characters with 1 uppercase and 1 number
-            </Description>
             <FieldError />
           </TextField>
 
           <div className="flex gap-2">
-            <Button type="submit" className={"w-full justify-center"}>
-              signin
+            <Button
+              type="submit"
+              className={
+                "w-full justify-center bg-neutral-500 hover:bg-neutral-700 text-white font-medium text-lg"
+              }
+            >
+              Signin
             </Button>
           </div>
         </Form>
         <div>
-          <Button onClick={handleGoogle} className={"w-full justify-center"}>
-            Sign in with Google
+          <Button
+            onClick={handleGoogle}
+            className={
+              "w-full justify-center bg-neutral-500 hover:bg-neutral-700 text-white font-medium text-lg"
+            }
+          >
+            <FcGoogle className="w-7 h-7" /> Sign in with Google
           </Button>
         </div>
-        <div>
+        <div className="flex gap-3">
           <p>Dont have an account?</p>
-          <Link href={"/signup"}>create account</Link>
+          <Link
+            href={"/signup"}
+            className="text-red-600 hover:text-neutral-500"
+          >
+            Click Here! To Create account
+          </Link>
         </div>
       </Card>
     </div>

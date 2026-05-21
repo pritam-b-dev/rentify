@@ -15,7 +15,9 @@ const Footer = () => {
     <footer className="bg-gray-100 text-gray-700 py-10 border-t border-gray-200 mt-5">
       <div className="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
         <div>
-          <h2 className="text-2xl font-bold text-gray-900 mb-3">Rentify</h2>
+          <h2 className="text-4xl text-cyan-700 font-extrabold mb-3">
+            Rentify
+          </h2>
           <p className="text-sm text-gray-500 mb-4">
             Easy and affordable car rentals.
           </p>
@@ -34,7 +36,7 @@ const Footer = () => {
         </div>
 
         <div>
-          <h3 className="text-gray-900 font-semibold mb-3">Useful Links</h3>
+          <h3 className="text-cyan-700 font-semibold mb-3">Useful Links</h3>
           <ul className="space-y-2 text-sm">
             <li>
               <Link href="/" className="hover:underline">
@@ -55,7 +57,7 @@ const Footer = () => {
         </div>
 
         <div>
-          <h3 className="text-gray-900 font-semibold mb-3">Contact Info</h3>
+          <h3 className="text-cyan-700 font-semibold mb-3">Contact Info</h3>
           <ul className="space-y-2 text-sm text-gray-600">
             <li className="flex items-center gap-2">
               <FaMapMarkerAlt /> Dhaka, Bangladesh
