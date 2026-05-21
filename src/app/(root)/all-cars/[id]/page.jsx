@@ -7,12 +7,21 @@ import { FaArrowLeftLong } from "react-icons/fa6";
 import BookingCard from "../../../../components/BookingCard";
 import EditCarDetails from "../../../../components/EditCarDetails";
 import DeleteCar from "../../../../components/DeleteCar";
+import { auth } from "../../../../lib/auth";
+import { headers } from "next/headers";
 
 const CarDetailsPage = async ({ params }) => {
+  //for server component token
+  const { token } = await auth.api.getToken({
+    headers: await headers(),
+  });
   const { id } = await params;
-  const res = await fetch(`http://localhost:5000/car/${id}`);
+  const res = await fetch(`http://localhost:5000/car/${id}`, {
+    headers: {
+      authorization: `Bearer ${token}`,
+    },
+  });
   const carDetails = await res.json();
-  console.log(carDetails);
   const {
     _id,
     carName,
