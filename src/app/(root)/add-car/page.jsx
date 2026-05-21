@@ -11,20 +11,24 @@ import {
 } from "@heroui/react";
 import React from "react";
 import { toast } from "react-toastify";
+import { authClient } from "../../../lib/auth-client";
 
 const AddCarPage = () => {
+  const { data: session } = authClient.useSession();
+
   const onSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const myCar = Object.fromEntries(formData.entries());
-    console.log(myCar);
+
+    myCar.userId = session?.user?.id;
+
     const res = await fetch(`http://localhost:5000/car`, {
       method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
+      headers: { "content-type": "application/json" },
       body: JSON.stringify(myCar),
     });
+
     if (res.ok) {
       const dbResponseFromBackend = await res.json();
       console.log("Database Response:", dbResponseFromBackend);

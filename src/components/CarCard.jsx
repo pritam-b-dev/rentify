@@ -30,6 +30,9 @@ const CarCard = ({ car }) => {
         <h1>{availabilityStatus}</h1>
         <span className="text-amber-800">${dailyPrice}/day</span>
       </div>
+      <div className="text-sm text-gray-500">
+        {car.booking_count || 0} bookings
+      </div>
       <Link href={`/all-cars/${_id}`}>
         <Button
           variant="ghost"
