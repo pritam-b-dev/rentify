@@ -2,8 +2,9 @@
 import { AlertDialog, Button } from "@heroui/react";
 import { useRouter } from "next/navigation";
 import React from "react";
-import { toast } from "react-toastify";
+
 import { authClient } from "../lib/auth-client";
+import toast from "react-hot-toast";
 
 const DeleteCar = ({ carDetails }) => {
   const router = useRouter();

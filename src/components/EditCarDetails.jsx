@@ -14,8 +14,9 @@ import {
 } from "@heroui/react";
 import { useRouter } from "next/navigation";
 import React from "react";
-import { toast } from "react-toastify";
+
 import { authClient } from "../lib/auth-client";
+import toast from "react-hot-toast";
 
 const EditCarDetails = ({ carDetails }) => {
   const router = useRouter();
@@ -257,7 +258,7 @@ const EditCarDetails = ({ carDetails }) => {
                   <Button
                     type="submit"
                     variant="outline"
-                    className="rounded-none w-full bg-cyan-500 text-white"
+                    className="rounded-lg w-full bg-neutral-500 hover:bg-neutral-700 text-white"
                   >
                     Update Information
                   </Button>

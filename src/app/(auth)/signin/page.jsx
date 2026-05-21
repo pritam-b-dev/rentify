@@ -16,6 +16,7 @@ import {
 import Link from "next/link";
 import { authClient } from "../../../lib/auth-client";
 import { FcGoogle } from "react-icons/fc";
+import toast from "react-hot-toast";
 const SignInPage = () => {
   const router = useRouter();
   const onSubmit = async (e) => {
@@ -29,11 +30,10 @@ const SignInPage = () => {
     });
     if (error) {
       console.error("Sign In error:", error.message);
-      alert(error.message || "problem signin");
+      toast.error(error.message || "problem signin");
       return;
     }
     if (data) {
-      alert("Signin successfully! 🎉");
       router.push("/");
       router.refresh();
     }

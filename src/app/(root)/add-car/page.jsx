@@ -10,8 +10,9 @@ import {
   TextArea,
 } from "@heroui/react";
 import React from "react";
-import { toast } from "react-toastify";
+
 import { authClient } from "../../../lib/auth-client";
+import toast from "react-hot-toast";
 
 const AddCarPage = () => {
   const { data: session } = authClient.useSession();

@@ -15,6 +15,7 @@ import {
 import { authClient } from "../../../lib/auth-client";
 import { FcGoogle } from "react-icons/fc";
 import Link from "next/link";
+import toast from "react-hot-toast";
 
 const SignUpPage = () => {
   const router = useRouter();
@@ -31,11 +32,10 @@ const SignUpPage = () => {
     });
     if (error) {
       console.error("Sign up error:", error.message);
-      alert(error.message || "problem signup");
+      toast.error(error.message || "problem signup");
       return;
     }
     if (data) {
-      alert("Account created successfully! 🎉");
       router.push("/signin");
       router.refresh();
     }
