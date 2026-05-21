@@ -1,19 +1,19 @@
 "use client";
 import { Button } from "@heroui/react";
 import { useState } from "react";
+import { authClient } from "@/lib/auth-client";
 
 const BookingCard = ({ carDetails }) => {
+  const { data: session } = authClient.useSession();
   const {
     _id,
     carName,
-    dailyPrice,
-    carType,
-    seatCapacity,
-    availabilityStatus,
-    pickupLocation,
     imageUrl,
-    description,
+    dailyPrice,
+    pickupLocation,
+    availabilityStatus,
   } = carDetails;
+
   const [isOpen, setIsOpen] = useState(false);
   const [driverNeeded, setDriverNeeded] = useState("no");
   const [specialNote, setSpecialNote] = useState("");
@@ -21,23 +21,48 @@ const BookingCard = ({ carDetails }) => {
 
   const isAvailable = availabilityStatus === "Available";
 
-  const handleConfirm = () => {
-    const bookingData = { carId, driverNeeded, specialNote, date };
-    console.log(bookingData);
-    setIsOpen(false);
+  const handleConfirm = async () => {
+    const bookingData = {
+      carId: _id,
+      carName,
+      imageUrl,
+      dailyPrice,
+      pickupLocation,
+      driverNeeded,
+      specialNote,
+      date,
+      userId: session?.user?.id,
+      userName: session?.user?.name,
+      iserImage: session?.user?.image,
+      status: "pending",
+      createdAt: new Date(),
+    };
+    console.log("4. bookingData:", bookingData);
+
+    const res = await fetch(`http://localhost:5000/bookings`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(bookingData),
+    });
+
+    const data = await res.json();
+    if (data.insertedId) {
+      alert("Booking confirmed!");
+      setIsOpen(false);
+    }
   };
 
+  // ... বাকি JSX same
   return (
     <>
-      {/* Book Now Button */}
       <Button
         onClick={() => setIsOpen(true)}
+        disabled={!isAvailable}
         className="bg-gray-900 text-white px-8 py-3 rounded-xl font-medium"
       >
         {isAvailable ? "Book Now" : "Not Available"}
       </Button>
 
-      {/* Modal */}
       {isOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center">
           <div
@@ -52,7 +77,7 @@ const BookingCard = ({ carDetails }) => {
               </h2>
               <button
                 onClick={() => setIsOpen(false)}
-                className="text-gray-400 hover:text-gray-600 text-xl"
+                className="text-gray-400 hover:text-gray-600"
               >
                 ✕
               </button>
@@ -79,33 +104,26 @@ const BookingCard = ({ carDetails }) => {
                   value={date}
                   onChange={(e) => setDate(e.target.value)}
                   min={new Date().toISOString().split("T")[0]}
-                  className="w-full border border-gray-200 rounded-xl px-3 py-2 text-sm text-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-300"
+                  className="w-full border border-gray-200 rounded-xl px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-gray-300"
                 />
               </div>
 
               <div className="space-y-1">
                 <label className="text-sm text-gray-500">Driver Needed?</label>
                 <div className="flex gap-3">
-                  <button
-                    onClick={() => setDriverNeeded("yes")}
-                    className={`flex-1 py-2 rounded-xl text-sm font-medium border transition-colors ${
-                      driverNeeded === "yes"
-                        ? "bg-gray-900 text-white border-gray-900"
-                        : "bg-white text-gray-600 border-gray-200 hover:border-gray-400"
-                    }`}
-                  >
-                    Yes
-                  </button>
-                  <button
-                    onClick={() => setDriverNeeded("no")}
-                    className={`flex-1 py-2 rounded-xl text-sm font-medium border transition-colors ${
-                      driverNeeded === "no"
-                        ? "bg-gray-900 text-white border-gray-900"
-                        : "bg-white text-gray-600 border-gray-200 hover:border-gray-400"
-                    }`}
-                  >
-                    No
-                  </button>
+                  {["yes", "no"].map((option) => (
+                    <button
+                      key={option}
+                      onClick={() => setDriverNeeded(option)}
+                      className={`flex-1 py-2 rounded-xl text-sm font-medium border transition-colors ${
+                        driverNeeded === option
+                          ? "bg-gray-900 text-white border-gray-900"
+                          : "bg-white text-gray-600 border-gray-200 hover:border-gray-400"
+                      }`}
+                    >
+                      {option === "yes" ? "Yes" : "No"}
+                    </button>
+                  ))}
                 </div>
               </div>
 
@@ -116,7 +134,7 @@ const BookingCard = ({ carDetails }) => {
                   onChange={(e) => setSpecialNote(e.target.value)}
                   placeholder="Any special request..."
                   rows={3}
-                  className="w-full border border-gray-200 rounded-xl px-3 py-2 text-sm text-gray-800 resize-none focus:outline-none focus:ring-2 focus:ring-gray-300"
+                  className="w-full border border-gray-200 rounded-xl px-3 py-2 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-gray-300"
                 />
               </div>
             </div>
