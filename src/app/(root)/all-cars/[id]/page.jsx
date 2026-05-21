@@ -74,6 +74,9 @@ const CarDetailsPage = async ({ params }) => {
               >
                 {isAvailable ? "Available" : "Unavailable"}
               </span>
+              <span className="px-3 py-1 rounded-full bg-pink-300 text-black-700 text-lg font-medium">
+                ${dailyPrice}/Day
+              </span>
             </div>
 
             <div>
