@@ -15,11 +15,14 @@ const MyAddedCarsPage = async () => {
     return <p className="text-center py-20">Please login to see your cars.</p>;
   }
 
-  const res = await fetch(`http://localhost:5000/car/user/${userId}`, {
-    headers: {
-      authorization: `Bearer ${token}`,
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_SERVER_URL}/car/user/${userId}`,
+    {
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
     },
-  });
+  );
   const myCars = await res.json();
 
   return (

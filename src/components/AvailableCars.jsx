@@ -3,9 +3,9 @@ import CarCard from "./CarCard";
 import AnimatedFeaturedCarsCard from "./AnimatedFeaturedCarsCard";
 
 const AvailableCars = async () => {
-  const res = await fetch(`http://localhost:5000/car`);
+  const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/car`);
   const allCars = await res.json();
-  console.log(allCars);
+
   return (
     <div id="available-cars" className="container mx-auto my-5 p-2">
       <h1 className="my-5 font-bold text-2xl">Available Cars</h1>

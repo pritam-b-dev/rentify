@@ -25,7 +25,7 @@ const AddCarPage = () => {
 
     const { data: tokenData } = await authClient.token();
 
-    const res = await fetch(`http://localhost:5000/car`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/car`, {
       method: "POST",
       headers: {
         "content-type": "application/json",

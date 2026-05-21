@@ -12,7 +12,7 @@ const AllCarsPage = () => {
     if (search) params.append("search", search);
     if (carType) params.append("carType", carType);
 
-    fetch(`http://localhost:5000/car?${params.toString()}`)
+    fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/car?${params.toString()}`)
       .then((res) => res.json())
       .then((data) => setAllCars(data));
   }, [search, carType]);
