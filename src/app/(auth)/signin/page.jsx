@@ -46,12 +46,12 @@ const SignInPage = () => {
   };
 
   return (
-    <div className="max-w-3xl flex justify-center items-center flex-col mx-auto my-5">
+    <div className="max-w-3xl flex justify-center items-center flex-col mx-auto p-2 my-5">
       <div className="text-center mb-5">
         <h1 className="text-2xl font-bold ">Signin To Your Account</h1>
       </div>
-      <Card className="border">
-        <Form onSubmit={onSubmit} className="flex w-96 flex-col gap-4">
+      <Card className="border p-6 sm:p-8 w-full max-w-md mx-auto shadow-md rounded-2xl bg-white">
+        <Form onSubmit={onSubmit} className="flex w-full flex-col gap-4">
           <TextField
             isRequired
             name="email"
@@ -84,7 +84,7 @@ const SignInPage = () => {
             </Button>
           </div>
         </Form>
-        <div>
+        <div className="mt-4 mb-6">
           <Button
             onClick={handleGoogle}
             className={
@@ -94,7 +94,7 @@ const SignInPage = () => {
             <FcGoogle className="w-7 h-7" /> Sign in with Google
           </Button>
         </div>
-        <div className="flex gap-3">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 text-sm mt-2 text-center">
           <p>Dont have an account?</p>
           <Link
             href={"/signup"}

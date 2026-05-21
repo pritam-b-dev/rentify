@@ -68,14 +68,14 @@ const CarDetailsPage = async ({ params }) => {
             </div>
 
             <div className="flex flex-wrap gap-3">
-              <span className="px-3 py-1 rounded-full bg-blue-100 text-blue-700 text-sm font-medium">
+              <span className="px-3 py-1 flex justify-center items-center rounded-full bg-blue-100 text-blue-700 text-sm font-medium">
                 {carType}
               </span>
-              <span className="px-3 py-1 rounded-full bg-purple-100 text-purple-700 text-sm font-medium">
+              <span className="px-3 py-1 flex justify-center items-center rounded-full bg-purple-100 text-purple-700 text-sm font-medium">
                 {seatCapacity} Seats
               </span>
               <span
-                className={`px-3 py-1 rounded-full text-sm font-medium ${
+                className={`px-3 py-1 flex justify-center items-center rounded-full text-sm font-medium ${
                   isAvailable
                     ? "bg-green-100 text-green-700"
                     : "bg-red-100 text-red-600"
@@ -83,7 +83,7 @@ const CarDetailsPage = async ({ params }) => {
               >
                 {isAvailable ? "Available" : "Unavailable"}
               </span>
-              <span className="px-3 py-1 rounded-full bg-pink-300 text-black-700 text-lg font-medium">
+              <span className="px-3 py-1 rounded-full flex justify-center items-center bg-pink-300 text-black-700 text-lg font-medium">
                 ${dailyPrice}/Day
               </span>
             </div>

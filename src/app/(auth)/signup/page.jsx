@@ -14,6 +14,7 @@ import {
 } from "@heroui/react";
 import { authClient } from "../../../lib/auth-client";
 import { FcGoogle } from "react-icons/fc";
+import Link from "next/link";
 
 const SignUpPage = () => {
   const router = useRouter();
@@ -47,12 +48,12 @@ const SignUpPage = () => {
   };
 
   return (
-    <div className="max-w-3xl flex justify-center items-center flex-col mx-auto my-5">
+    <div className="w-full min-h-[90vh] flex flex-col justify-center items-center mx-auto px-4 my-5">
       <div className="text-center mb-5">
         <h1 className="text-3xl font-bold">Create Account</h1>
       </div>
-      <Card className="border">
-        <Form onSubmit={onSubmit} className="flex w-96 flex-col gap-4">
+      <Card className="border p-6 sm:p-8 w-full max-w-md mx-auto shadow-sm rounded-2xl bg-white">
+        <Form onSubmit={onSubmit} className="flex w-full flex-col gap-4">
           <TextField isRequired name="name" type="text">
             <Label>Name</Label>
             <Input placeholder="Enter your name" />
@@ -101,7 +102,7 @@ const SignUpPage = () => {
           >
             <Label>Password</Label>
             <Input placeholder="Enter your password" />
-            <Description>
+            <Description className="text-xs text-gray-500 mt-1">
               At least 6 characters with uppercase and lowercase letters and
               numbers
             </Description>
@@ -122,12 +123,19 @@ const SignUpPage = () => {
         <div>
           <Button
             onClick={handleGoogle}
-            className={
-              "w-full justify-center bg-neutral-500 hover:bg-neutral-700 text-white font-medium text-lg"
-            }
+            className="w-full flex items-center justify-center gap-2 bg-white hover:bg-gray-50 text-gray-700 border border-gray-300 font-medium text-base rounded-xl py-6 shadow-sm"
           >
             <FcGoogle className="w-7 h-7" /> Sign Up with Google
           </Button>
+        </div>
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 text-sm mt-2 text-center">
+          <p>Already have an account?</p>
+          <Link
+            href={"/signin"}
+            className="text-red-600 hover:text-neutral-500"
+          >
+            Click Here!
+          </Link>
         </div>
       </Card>
     </div>

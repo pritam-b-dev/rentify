@@ -30,7 +30,12 @@ const DeleteCar = ({ carDetails }) => {
   };
   return (
     <AlertDialog>
-      <Button variant="outline" className={"rounded-none px-10 py-2"}>
+      <Button
+        variant="outline"
+        className={
+          "rounded-lg bg-neutral-200 hover:bg-neutral-400 text-black px-10 py-2"
+        }
+      >
         Delete
       </Button>
       <AlertDialog.Backdrop>

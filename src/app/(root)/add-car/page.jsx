@@ -182,7 +182,7 @@ const AddCarPage = () => {
         <Button
           type="submit"
           variant="outline"
-          className="rounded-none w-full bg-cyan-500 text-white"
+          className="rounded-md w-full bg-neutral-500 hover:bg-neutral-700 text-white"
         >
           Add Car
         </Button>

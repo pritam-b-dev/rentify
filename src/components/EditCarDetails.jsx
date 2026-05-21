@@ -57,7 +57,12 @@ const EditCarDetails = ({ carDetails }) => {
 
   return (
     <Modal>
-      <Button variant="outline" className={"rounded-none px-10 py-2 mr-4"}>
+      <Button
+        variant="outline"
+        className={
+          "rounded-lg bg-neutral-200 hover:bg-neutral-400 text-black px-10 py-2 mr-4"
+        }
+      >
         Edit
       </Button>
       <Modal.Backdrop>
