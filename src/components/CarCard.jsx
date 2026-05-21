@@ -28,7 +28,7 @@ const CarCard = ({ car }) => {
         <span>Pickup from {pickupLocation}</span>
       </div>
       <div className="flex justify-between font-semibold text-slate-800">
-        <h1 className=" bg-cyan-100 px-4 py-1 text-cyan-700 rounded-full">
+        <h1 className=" bg-[#E6F1FB] px-4 py-1 text-cyan-700 rounded-full">
           {availabilityStatus}
         </h1>
         <span className="text-cyan-700 font-bold">${dailyPrice}/day</span>
