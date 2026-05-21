@@ -22,15 +22,18 @@ const CarCard = ({ car }) => {
         width={500}
         className="w-full h-48 object-contain mx-auto"
       />
-      <div className="text-xl font-bold text-neutral-800 mb-1">{carName}</div>
+      <div className="text-xl font-bold text-neutral-800 mb-1 ">{carName}</div>
       <div className="flex gap-2 items-center">
-        <FaMapMarkerAlt /> <span>Pickup from {pickupLocation}</span>
+        <FaMapMarkerAlt className="text-red-400 " />{" "}
+        <span>Pickup from {pickupLocation}</span>
       </div>
-      <div className="flex justify-between text-slate-700">
-        <h1>{availabilityStatus}</h1>
-        <span className="text-amber-800">${dailyPrice}/day</span>
+      <div className="flex justify-between font-semibold text-slate-800">
+        <h1 className=" bg-cyan-100 px-4 py-1 text-cyan-700 rounded-full">
+          {availabilityStatus}
+        </h1>
+        <span className="text-cyan-700 font-bold">${dailyPrice}/day</span>
       </div>
-      <div className="text-sm text-gray-500">
+      <div className="text-sm text-gray-500 ">
         {car.booking_count || 0} bookings
       </div>
       <Link href={`/all-cars/${_id}`}>

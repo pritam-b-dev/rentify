@@ -35,7 +35,7 @@ const NavBar = () => {
           </div>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-12 mt-3 w-52 p-2 shadow"
+            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-12 mt-3 w-52 p-2 shadow text-cyan-700 font-semibold"
           >
             <li>
               <Link href={"/"}>Home</Link>
@@ -48,12 +48,15 @@ const NavBar = () => {
             </li>
           </ul>
         </div>
-        <Link href={"/"} className="w-full font-bold text-3xl ">
+        <Link
+          href={"/"}
+          className="w-full font-extrabold text-4xl text-cyan-700 "
+        >
           Rentify
         </Link>
       </div>
       <div className="flex gap-2">
-        <ul className="menu menu-horizontal gap-4 hidden lg:flex">
+        <ul className="menu menu-horizontal gap-4 hidden lg:flex text-cyan-700 font-semibold">
           <li>
             <Link href={"/"}>Home</Link>
           </li>
@@ -84,7 +87,7 @@ const NavBar = () => {
             </div>
             <ul
               tabIndex="-1"
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-12 w-52 p-2 shadow"
+              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-12 w-52 p-2 shadow text-cyan-700 "
             >
               <li>
                 <Link href={"/add-car"}>Add Car</Link>

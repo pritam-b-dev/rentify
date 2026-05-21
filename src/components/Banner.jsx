@@ -36,16 +36,16 @@ const Banner = () => {
         >
           <motion.span
             variants={itemVariants}
-            className="text-xs md:text-sm font-bold uppercase tracking-widest text-blue-600 bg-blue-50 dark:bg-blue-950/50 px-3 rounded-full w-max mx-auto lg:mx-0"
+            className="text-xs md:text-sm font-bold uppercase tracking-widest text-cyan-700  bg-blue-50 dark:bg-blue-950/50 px-3 rounded-full w-max mx-auto lg:mx-0"
           >
             Premium Car Rental
           </motion.span>
           <motion.h1
             variants={itemVariants}
-            className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-tight"
+            className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-neutral-800 dark:text-white leading-tight"
           >
             Find, Book, and Rent a Car in{" "}
-            <span className="text-blue-600">Easy Steps</span>
+            <span className="text-cyan-700">Easy Steps</span>
           </motion.h1>
           <div className="flex flex-col sm:flex-row items-center gap-6 max-w-2xl mx-auto lg:mx-0">
             <motion.p
@@ -62,9 +62,9 @@ const Banner = () => {
               animate={{
                 scale: [1, 1.05, 1],
                 boxShadow: [
-                  "0 0 0 0 rgba(37, 99, 235, 0.4)",
+                  "0 0 0 0 rgba(14, 116, 144, 0.4)",
                   "0px 0px 0px 15px rgba(37, 99, 235, 0)",
-                  "0 0 0 0 rgba(37, 99, 235, 0)",
+                  "0 0 0 0 rgba(14, 116, 144, 0)",
                 ],
               }}
               transition={{
@@ -77,7 +77,7 @@ const Banner = () => {
                 <Button
                   size="lg"
                   color="primary"
-                  className="font-semibold text-white bg-blue-600 hover:bg-blue-700 shadow-lg shadow-blue-500/20 transform hover:-translate-y-0.5 transition-all duration-200 px-8 py-6 text-base rounded-xl w-full sm:w-auto"
+                  className="font-semibold bg-neutral-500 hover:bg-neutral-700 text-white shadow-lg shadow-blue-500/20 transform hover:-translate-y-0.5 transition-all duration-200 px-8 py-6 text-base rounded-xl w-full sm:w-auto"
                 >
                   Available Cars
                 </Button>
