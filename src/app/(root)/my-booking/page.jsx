@@ -6,9 +6,14 @@ const MyBookingsPage = async () => {
   const session = await auth.api.getSession({
     headers: await headers(),
   });
-  console.log("session:", session);
-  console.log("userId:", session?.user?.id);
+
   const userId = session?.user?.id;
+
+  if (!userId) {
+    return (
+      <p className="text-center py-20">Please login to see your bookings.</p>
+    );
+  }
 
   const res = await fetch(`http://localhost:5000/bookings/${userId}`);
   const bookings = await res.json();
@@ -26,6 +31,7 @@ const MyBookingsPage = async () => {
               key={booking._id}
               className="bg-white rounded-2xl border border-gray-100 shadow-sm flex flex-col sm:flex-row overflow-hidden"
             >
+              {/* Car Image */}
               <div className="relative w-full sm:w-48 h-40 shrink-0">
                 <Image
                   src={booking.imageUrl}
@@ -35,16 +41,23 @@ const MyBookingsPage = async () => {
                 />
               </div>
 
+              {/* Info */}
               <div className="flex-1 p-5 flex flex-col justify-between">
                 <div className="space-y-2">
                   <h2 className="text-lg font-bold text-gray-900">
                     {booking.carName}
                   </h2>
                   <div className="flex flex-wrap gap-4 text-sm text-gray-600">
-                    <span>{booking.date}</span>
-                    <span>{booking.pickupLocation}</span>
                     <span>
-                      Driver: {booking.driverNeeded === "yes" ? "Yes" : "No"}
+                      📅 {booking.startDate} → {booking.endDate}
+                    </span>
+                    <span>
+                      🗓️ {booking.totalDays} day
+                      {booking.totalDays > 1 ? "s" : ""}
+                    </span>
+                    <span>📍 {booking.pickupLocation}</span>
+                    <span>
+                      🧑‍✈️ Driver: {booking.driverNeeded === "yes" ? "Yes" : "No"}
                     </span>
                   </div>
                   {booking.specialNote && (
@@ -55,13 +68,14 @@ const MyBookingsPage = async () => {
                 </div>
 
                 <div className="flex items-center justify-between mt-4">
-                  <p className="text-2xl font-bold text-gray-900">
-                    ${booking.dailyPrice}
-                    <span className="text-sm font-normal text-gray-400">
-                      {" "}
-                      / day
-                    </span>
-                  </p>
+                  <div>
+                    <p className="text-sm text-gray-400">
+                      ${booking.dailyPrice}/day × {booking.totalDays} days
+                    </p>
+                    <p className="text-2xl font-bold text-gray-900">
+                      Total: ${booking.totalPrice}
+                    </p>
+                  </div>
                   <span
                     className={`px-3 py-1 rounded-full text-xs font-medium ${
                       booking.status === "confirmed"

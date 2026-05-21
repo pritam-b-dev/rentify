@@ -17,9 +17,19 @@ const BookingCard = ({ carDetails }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [driverNeeded, setDriverNeeded] = useState("no");
   const [specialNote, setSpecialNote] = useState("");
-  const [date, setDate] = useState("");
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
 
   const isAvailable = availabilityStatus === "Available";
+
+  const totalDays =
+    startDate && endDate
+      ? Math.ceil(
+          (new Date(endDate) - new Date(startDate)) / (1000 * 60 * 60 * 24),
+        )
+      : 0;
+
+  const totalPrice = totalDays * dailyPrice;
 
   const handleConfirm = async () => {
     const bookingData = {
@@ -27,17 +37,19 @@ const BookingCard = ({ carDetails }) => {
       carName,
       imageUrl,
       dailyPrice,
+      totalDays,
+      totalPrice,
+      startDate,
+      endDate,
       pickupLocation,
       driverNeeded,
       specialNote,
-      date,
       userId: session?.user?.id,
       userName: session?.user?.name,
-      iserImage: session?.user?.image,
+      userImage: session?.user?.image,
       status: "pending",
       createdAt: new Date(),
     };
-    console.log("4. bookingData:", bookingData);
 
     const res = await fetch(`http://localhost:5000/bookings`, {
       method: "POST",
@@ -52,7 +64,6 @@ const BookingCard = ({ carDetails }) => {
     }
   };
 
-  // ... বাকি JSX same
   return (
     <>
       <Button
@@ -70,7 +81,8 @@ const BookingCard = ({ carDetails }) => {
             onClick={() => setIsOpen(false)}
           />
 
-          <div className="relative bg-white rounded-2xl shadow-xl w-full max-w-md mx-4 p-6 space-y-5">
+          <div className="relative bg-white rounded-2xl shadow-xl w-full max-w-md mx-4 p-6 space-y-5 max-h-[90vh] overflow-y-auto">
+            {/* Header */}
             <div className="flex items-center justify-between">
               <h2 className="text-xl font-bold text-gray-900">
                 Confirm Booking
@@ -83,6 +95,7 @@ const BookingCard = ({ carDetails }) => {
               </button>
             </div>
 
+            {/* Daily Rate */}
             <div className="bg-gray-50 rounded-xl p-4">
               <p className="text-gray-500 text-sm">Daily Rate</p>
               <p className="text-3xl font-bold text-gray-900">
@@ -97,17 +110,47 @@ const BookingCard = ({ carDetails }) => {
             <hr className="border-gray-100" />
 
             <div className="space-y-4">
+              {/* Start Date */}
               <div className="space-y-1">
-                <label className="text-sm text-gray-500">Booking Date</label>
+                <label className="text-sm text-gray-500">Start Date</label>
                 <input
                   type="date"
-                  value={date}
-                  onChange={(e) => setDate(e.target.value)}
+                  value={startDate}
+                  onChange={(e) => setStartDate(e.target.value)}
                   min={new Date().toISOString().split("T")[0]}
                   className="w-full border border-gray-200 rounded-xl px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-gray-300"
                 />
               </div>
 
+              {/* End Date */}
+              <div className="space-y-1">
+                <label className="text-sm text-gray-500">End Date</label>
+                <input
+                  type="date"
+                  value={endDate}
+                  onChange={(e) => setEndDate(e.target.value)}
+                  min={startDate || new Date().toISOString().split("T")[0]}
+                  className="w-full border border-gray-200 rounded-xl px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-gray-300"
+                />
+              </div>
+
+              {/* Total Price */}
+              {totalDays > 0 && (
+                <div className="bg-gray-50 rounded-xl p-4 space-y-1">
+                  <div className="flex justify-between text-sm text-gray-500">
+                    <span>Duration</span>
+                    <span>
+                      {totalDays} day{totalDays > 1 ? "s" : ""}
+                    </span>
+                  </div>
+                  <div className="flex justify-between font-bold text-gray-900">
+                    <span>Total Price</span>
+                    <span>${totalPrice}</span>
+                  </div>
+                </div>
+              )}
+
+              {/* Driver Needed */}
               <div className="space-y-1">
                 <label className="text-sm text-gray-500">Driver Needed?</label>
                 <div className="flex gap-3">
@@ -127,6 +170,7 @@ const BookingCard = ({ carDetails }) => {
                 </div>
               </div>
 
+              {/* Special Note */}
               <div className="space-y-1">
                 <label className="text-sm text-gray-500">Special Note</label>
                 <textarea
@@ -139,12 +183,13 @@ const BookingCard = ({ carDetails }) => {
               </div>
             </div>
 
+            {/* Confirm Button */}
             <Button
               onClick={handleConfirm}
-              disabled={!date}
+              disabled={!startDate || !endDate || totalDays <= 0}
               className="w-full bg-gray-900 text-white py-3 rounded-xl font-medium"
             >
-              Confirm Booking
+              Confirm Booking — ${totalPrice}
             </Button>
 
             <p className="text-xs text-center text-gray-400">
