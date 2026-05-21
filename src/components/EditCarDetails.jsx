@@ -15,6 +15,7 @@ import {
 import { useRouter } from "next/navigation";
 import React from "react";
 import { toast } from "react-toastify";
+import { authClient } from "../lib/auth-client";
 
 const EditCarDetails = ({ carDetails }) => {
   const router = useRouter();
@@ -34,11 +35,12 @@ const EditCarDetails = ({ carDetails }) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const myCar = Object.fromEntries(formData.entries());
-    console.log(myCar);
+    const { data: tokenData } = await authClient.token();
     const res = await fetch(`http://localhost:5000/car/${_id}`, {
       method: "PATCH",
       headers: {
         "content-type": "application/json",
+        authorization: `Bearer ${tokenData?.token}`,
       },
       body: JSON.stringify(myCar),
     });

@@ -6,6 +6,9 @@ const MyBookingsPage = async () => {
   const session = await auth.api.getSession({
     headers: await headers(),
   });
+  const { token } = await auth.api.getToken({
+    headers: await headers(),
+  });
 
   const userId = session?.user?.id;
 
@@ -15,7 +18,11 @@ const MyBookingsPage = async () => {
     );
   }
 
-  const res = await fetch(`http://localhost:5000/bookings/${userId}`);
+  const res = await fetch(`http://localhost:5000/bookings/${userId}`, {
+    headers: {
+      authorization: `Bearer ${token}`,
+    },
+  });
   const bookings = await res.json();
 
   return (
@@ -29,7 +36,7 @@ const MyBookingsPage = async () => {
           {bookings.map((booking) => (
             <div
               key={booking._id}
-              className="bg-white rounded-2xl border border-gray-100 shadow-sm flex flex-col sm:flex-row overflow-hidden"
+              className="bg-white rounded-2xl border border-gray-100 shadow-sm flex flex-col sm:flex-row overflow-hidden p-4"
             >
               {/* Car Image */}
               <div className="relative w-full sm:w-48 h-40 shrink-0">
@@ -49,15 +56,15 @@ const MyBookingsPage = async () => {
                   </h2>
                   <div className="flex flex-wrap gap-4 text-sm text-gray-600">
                     <span>
-                      📅 {booking.startDate} → {booking.endDate}
+                      {booking.startDate} → {booking.endDate}
                     </span>
                     <span>
-                      🗓️ {booking.totalDays} day
+                      {booking.totalDays} day
                       {booking.totalDays > 1 ? "s" : ""}
                     </span>
-                    <span>📍 {booking.pickupLocation}</span>
+                    <span> {booking.pickupLocation}</span>
                     <span>
-                      🧑‍✈️ Driver: {booking.driverNeeded === "yes" ? "Yes" : "No"}
+                      Driver: {booking.driverNeeded === "yes" ? "Yes" : "No"}
                     </span>
                   </div>
                   {booking.specialNote && (

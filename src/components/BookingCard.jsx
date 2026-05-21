@@ -51,9 +51,14 @@ const BookingCard = ({ carDetails }) => {
       createdAt: new Date(),
     };
 
+    const { data: tokenData } = await authClient.token();
+
     const res = await fetch(`http://localhost:5000/bookings`, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        authorization: `Bearer ${tokenData?.token}`,
+      },
       body: JSON.stringify(bookingData),
     });
 

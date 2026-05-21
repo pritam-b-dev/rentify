@@ -4,13 +4,17 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { authClient } from "../lib/auth-client";
+import { useRouter } from "next/navigation";
 
 const NavBar = () => {
   const { data: session } = authClient.useSession();
   const user = session?.user;
+  const router = useRouter();
 
   const handleSignOut = async () => {
     await authClient.signOut();
+    router.push("/signin");
+    router.refresh();
   };
 
   return (

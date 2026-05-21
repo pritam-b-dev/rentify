@@ -6,14 +6,20 @@ const MyAddedCarsPage = async () => {
   const session = await auth.api.getSession({
     headers: await headers(),
   });
-
+  const { token } = await auth.api.getToken({
+    headers: await headers(),
+  });
   const userId = session?.user?.id;
 
   if (!userId) {
     return <p className="text-center py-20">Please login to see your cars.</p>;
   }
 
-  const res = await fetch(`http://localhost:5000/car/user/${userId}`);
+  const res = await fetch(`http://localhost:5000/car/user/${userId}`, {
+    headers: {
+      authorization: `Bearer ${token}`,
+    },
+  });
   const myCars = await res.json();
 
   return (
