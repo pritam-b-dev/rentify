@@ -103,7 +103,7 @@ const Banner = () => {
             alt="Premium Rental Car"
             fill
             priority
-            className="object-cover "
+            className="object-cover rounded-lg"
           />
         </motion.div>
       </div>
