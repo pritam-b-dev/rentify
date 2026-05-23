@@ -7,7 +7,7 @@ const client = new MongoClient(process.env.MONGODB_URI);
 const db = client.db("rentify");
 
 export const auth = betterAuth({
-  baseURL: "http://localhost:3000",
+  baseURL: process.env.BETTER_AUTH_URL,
   secret: process.env.BETTER_AUTH_SECRET,
   database: mongodbAdapter(db),
   emailAndPassword: {
@@ -16,7 +16,7 @@ export const auth = betterAuth({
   trustedOrigins: ["http://localhost:3000", process.env.BETTER_AUTH_URL],
   session: {
     cookieCache: {
-      enabled: true,
+      enabled: false,
       strategy: "jwt",
       maxAge: 7 * 24 * 60 * 60,
     },
