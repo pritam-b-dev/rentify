@@ -13,9 +13,12 @@ const CarCarousel = ({ cars }) => {
     <div className="relative">
       {/* Carousel */}
       <div className="overflow-hidden" ref={emblaRef}>
-        <div className="flex gap-5">
+        <div className="flex-1">
           {cars.map((car) => (
-            <div key={car._id} className="flex-none w-full md:w-1/2 lg:w-1/3">
+            <div
+              key={car._id}
+              className="flex-none w-full md:w-1/2 lg:w-1/3 pr-5"
+            >
               <AnimatedFeaturedCarsCard car={car} />
             </div>
           ))}
